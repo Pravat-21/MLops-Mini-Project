@@ -1,0 +1,12 @@
+# local package
+#-e .
+
+# external requirements
+pandas
+numpy
+matplotlib
+scikit-learn
+awscli
+xgboost
+mlflow<3
+dagshub
