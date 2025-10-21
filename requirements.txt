@@ -1,5 +1,5 @@
 # local package
-#-e .
+-e .
 
 # external requirements
 pandas
@@ -12,3 +12,4 @@ mlflow<3
 dagshub
 ipykernel
 nltk
+PyYAML
