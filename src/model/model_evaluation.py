@@ -115,7 +115,7 @@ def main():
             mlflow.sklearn.log_model(clf, "model")
             
             # Save model info
-            #save_model_info(run.info.run_id, "model", 'reports/experiment_info.json')
+            save_model_info(run.info.run_id, "model", 'reports/experiment_info.json')
             
             # Log the metrics file to MLflow
             mlflow.log_artifact('reports/metrics.json')
