@@ -7,6 +7,7 @@ from src.logger import file_logging, console_logging
 from src.utils import load_params,load_data,save_data
 from src.exception import CustomException
 import yaml
+import pickle
 
 #------------------------------Configuration--------------------------------------------------------
 file_logger=file_logging("Feature Engineering")
@@ -38,6 +39,8 @@ def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: i
 
         test_df=pd.DataFrame(X_test_bow.toarray())
         test_df['label']=y_test
+
+        pickle.dump(vectorizer, open('models/vectorizer.pkl', 'wb'))
 
         file_logger.info('Successfully Bag of Words applied and data transformed')
         return train_df, test_df

@@ -13,3 +13,4 @@ dagshub
 ipykernel
 nltk
 PyYAML
+flask
