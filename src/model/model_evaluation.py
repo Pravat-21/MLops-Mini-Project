@@ -9,11 +9,26 @@ from src.logger import file_logging, console_logging
 from src.utils import load_params,load_data,save_data
 from src.exception import CustomException
 import dagshub
-
+import os
 #--------------------------------------Configuration------------------------------------------
 file_logger=file_logging("Model Evaluation")
-mlflow.set_tracking_uri('https://dagshub.com/Pravat-21/MLops-Mini-Project.mlflow')
-dagshub.init(repo_owner='Pravat-21', repo_name='MLops-Mini-Project', mlflow=True)
+#mlflow.set_tracking_uri('https://dagshub.com/Pravat-21/MLops-Mini-Project.mlflow')
+#dagshub.init(repo_owner='Pravat-21', repo_name='MLops-Mini-Project', mlflow=True)
+
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("DAGSHUB_PAT")
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "Pravat-21"
+repo_name = "MLops-Mini-Project"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 #-------------------------------------Functions-----------------------------------------------
 def load_model(file_path: str):
