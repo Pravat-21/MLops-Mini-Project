@@ -1,3 +1,4 @@
+-e .
 aiobotocore
 aiohappyeyeballs==2.3.4
 aiohttp==3.10.0
