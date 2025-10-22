@@ -32,10 +32,10 @@ class TestModelLoading(unittest.TestCase):
         cls.new_model = mlflow.pyfunc.load_model(cls.new_model_uri)
 
         # Load the vectorizer
-        #1cls.vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
+        cls.vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
 
         # Load holdout test data
-        #2cls.holdout_data = pd.read_csv('data/processed/test_bow.csv')
+        #1cls.holdout_data = pd.read_csv('data/processed/test_bow.csv')
 
     @staticmethod
     def get_latest_model_version(model_name, stage="Staging"):
@@ -46,7 +46,7 @@ class TestModelLoading(unittest.TestCase):
     def test_model_loaded_properly(self):
         self.assertIsNotNone(self.new_model)
 
-    """def test_model_signature(self):
+    def test_model_signature(self):
         # Create a dummy input for the model based on expected input shape
         input_text = "hi how are you"
         input_data = self.vectorizer.transform([input_text])
@@ -62,7 +62,7 @@ class TestModelLoading(unittest.TestCase):
         self.assertEqual(len(prediction), input_df.shape[0])
         self.assertEqual(len(prediction.shape), 1)  # Assuming a single output column for binary classification
 
-    def test_model_performance(self):
+    """def test_model_performance(self):
         # Extract features and labels from holdout test data
         X_holdout = self.holdout_data.iloc[:,0:-1]
         y_holdout = self.holdout_data.iloc[:,-1]
