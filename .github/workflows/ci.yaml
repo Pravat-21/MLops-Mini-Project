@@ -77,11 +77,17 @@ jobs:
           echo "Triggering Render deployment..."
           echo "Service ID: $RENDER_SERVICE_ID"
 
-          curl -X POST "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys" \
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS=%{http_code}\n" \
+            -X POST "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys" \
             -H "Accept: application/json" \
             -H "Authorization: Bearer $RENDER_API_KEY" \
             -H "Content-Type: application/json" \
-            --data '{"clearCache":false}'
+            --data '{"clearCache":false}')
+
+          echo "------ Render Response ------"
+          echo "$RESPONSE"
+          echo "-----------------------------"
+
 
 
 
