@@ -68,7 +68,7 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/emotion2:latest
 
-            - name: Trigger Deploy on Render
+      - name: Trigger Deploy on Render
         if: success()
         env:
           RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
